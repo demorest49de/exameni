@@ -1,140 +1,31 @@
-import
-    React, {useState}
-    from
+import {useState} from "react";
 
-        'react'
-    ;
-import
-    ReactDOM
-    from
+let todolistID1 = '1'
+let todolistID2 = '2'
 
-        'react-dom'
-    ;
-import
 
-    './index.css'
-    ;
-
-type UserType = {
-
-    id
-        : number
-
-    name
-        : string
-
-    age
-        : number
+const obj = {
+    todolistID1: [
+        {id: "v1", title: 'HTML&CSS', isDone: true},
+        {id: "v2", title: 'JS', isDone: true},
+        {id: "v3", title: 'ReactJS', isDone: false},
+    ],
+    [todolistID2]: [
+        {id: "v1", title: 'Rest API', isDone: true},
+        {id: "v2", title: 'GraphQL', isDone: false},
+    ]
 }
-type UserPropsType = UserType & {
+const todoLists = [{id: todolistID2, title:'new todo', filter:'All'}, {}]
+todolists.map
 
-    deleteUser
-        :
-        (
-            id: number
-        ) =>
+const asdf = obj[todolistID2]
 
-            void
-
+const ttt = {
+    ...obj, todolistID1:
+        obj.todolistID1.map(e => e.title === 'JS' ? {...e, title: 'ts'} : e)
 }
 
-function
-
-User
-(
-    props: UserPropsType
-) {
-
-    return (
-        <li>
-            <button onClick={() => props.deleteUser(props.id)}>x</button>
-            User {props.name}: {props.age} y.o.
-        </li>
-    )
-}
-
-function UsersList() {
-
-    const
-        data: Array<UserType> = [
-            {
-                id:
-                    1
-                ,
-                name:
-                    "Bob"
-                ,
-                age:
-                    25
-            },
-            {
-                id:
-                    2
-                ,
-                name:
-                    "Alex"
-                ,
-                age:
-                    28
-            },
-            {
-                id:
-                    3
-                ,
-                name:
-                    "Ann"
-                ,
-                age:
-                    23
-            },
-            {
-                id:
-                    4
-                ,
-                name:
-                    "John"
-                ,
-                age:
-                    30
-            },
-        ]
-
-    const
-        [users, setUsers]
-            = useState<Array<UserType>>(data)
-
-    const
-        deleteUser =
-            (
-                userID: number
-            ) => {
-
-                const
-                    filteredUsers = users.filter(
-                        u =>
-                            u.id !== userID)
-                setUsers(filteredUsers)
-            }
-
-    return (
-        <main>
-            <h4>User list:</h4>
-            <ul>
-                {users.map(u => <User
-                    key={u.id}
-                    {...u}
-                    deleteUser={deleteUser}
-                />)}
-            </ul>
-        </main>
-    )
-}
-
-ReactDOM.render(
-    <UsersList/>,
-    document
-        .getElementById(
-            'root'
-        )
-);
-// Что надо написать вместо xxx, чтобы код работал?
+console.log(' asdf: ', asdf);
+console.log(' obj: ', obj);
+console.log(' obj[todolistID2]: ', todolistID2);
+console.log(' ttt: ', ttt);
