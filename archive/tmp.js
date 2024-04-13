@@ -1,599 +1,109 @@
-import
-  React, {useState}
-  from
-    
-    'react'
-  ;
-import
-  ReactDOM
-  from
-    
-    'react-dom'
-  ;
-import
-  
-  './index.css'
-  ;
-
-type UserType = {
-  
-  id
-    : number
-  
-  name
-    : string
-  
-  age
-    : number
+type StudentType = {
+  id: number
+  name: string
 }
 
-function User(props: UserType) {
-  return (
-    <li>Student {props.name}: {props.age} y.o.</li>
-  )
+type FriendsType = {
+  [key: string]: Array<string>
 }
 
-function UsersList() {
-  const data: Array<UserType> = [
-    {
-      id:
-        1
-      ,
-      name:
-        "Bob"
-      ,
-      age:
-        34
-    },
-    {
-      id:
-        2
-      ,
-      name:
-        "Alex"
-      ,
-      age:
-        29
-    },
-    {
-      id:
-        3
-      ,
-      name:
-        "Ann"
-      ,
-      age:
-        25
-    },
-    {
-      id:
-        4
-      ,
-      name:
-        "John"
-      ,
-      age:
-        36
-    },
-  ]
-  
-  const [users, setUsers]
-    = useState<Array<UserType>>(data)
-  
-  return (
-    <main>
-      <h4>User list:</h4>
-      <ul>
-        { users.map(u => <User key={u.id} {...xxx} />) }
-      </ul>
-    </main>
-  )
+export const students: Array<StudentType> = [
+  {id: 1, name: "Bob"},
+  {id: 2, name: "Alex"},
+  {id: 3, name: "Ann"},
+  {id: 4, name: "Charley"},
+]
+
+export const friends: FriendsType = {
+  1: ["Oliver", "Jack", "Oscar",],
+  2: ["Jack", "Lewis", "Thomas",],
+  3: ["William", "Michael", "Lewis",],
+  4: ["Oscar", "James", "William",],
 }
 
-ReactDOM.render(
-  <UsersList/>,
-  document
-    .getElementById(
-      'root'
-    )
-);
-// Что надо написать вместо xxx, чтобы код работал?
-
-
-
-
-
-
-
-import
-  React, {useState}
-  from
-    
-    'react'
-  ;
-import
-  ReactDOM
-  from
-    
-    'react-dom'
-  ;
-import
-  
-  './index.css'
-  ;
-
-type UserType = {
-  
-  id
-    : number
-  
-  name
-    : string
-  
-  age
-    : number
+const getMutualFriends = (st_1: StudentType, st_2: StudentType,) => {
+  const result: Array<string> = []
+  friends[st_1.id].forEach(f => friends[st_2.id].includes(f)? result.push(f): null)
+  return result
 }
 
-function User(props: UserType) {
-  
-  return (
-    <li>User {props.name}: {props.age} y.o.</li>
-  )
+//Дан массив студентов и структура,
+//которая содержит список друзей каждого из студентов.
+// Так же дана функция  getMutualFriends, проверяющая наличие общих друзей
+// у двух выбранных студентов.
+//Функция принимает параметром два объекта типа StudentType
+// и возвращает массив с именами общих друзей,
+//если они есть и пустой массив, если таковых нету.
+// Что надо написать вместо ххх, чтобы функция работала?
+
+
+const client = {
+  name: "Yana",
+  age: 57,
+  scores: [33.98, 32.66, 49.86]
 }
 
-function UsersList() {
-  const data: Array<UserType> = [
-    {
-      id:
-        1
-      ,
-      name:
-        "Bob"
-      ,
-      age:
-        25
-    },
-    {
-      id:
-        2
-      ,
-      name:
-        "Alex"
-      ,
-      age:
-        28
-    },
-    {
-      id:
-        3
-      ,
-      name:
-        "Ann"
-      ,
-      age:
-        23
-    },
-    {
-      id:
-        4
-      ,
-      name:
-        "John"
-      ,
-      age:
-        30
-    },
-  ]
-  
-  const [users, setUsers]
-    = useState<Array<UserType>>(data)
+const {name, age, scores} = client
 
-// Необходимо отрендерить список пользователей старше 25 лет:
-  
-  
-  const getOlderThen25Users = (u: UserType) => u.age > 25
-  
-  
-  const olderThen25Users = users.filter(getOlderThen25Users)
-  
-  
-  return (        <main>
-      <h4>User list:</h4>
-      <ul>
-        { olderThen25Users.map(u => <User key={u.id} {...u}/>)}
-      </ul>
-    </main>
-  )
+console.log(client.scores === scores && age)
+
+
+/*Какое значение мы увидим в консоли?*/
+
+
+const client = {
+  name: "Max",
+  age: 33,
+  friends: ["Igor", "Sergey", "Katya", "Anastasiya"]
 }
 
-ReactDOM.render(
-  <UsersList/>,
-  document
-    .getElementById(
-      'root'
-    )
-);
-// Что надо написать вместо xxx, чтобы код работал?
+const [brother, aspect, bus] = client.friends
 
+const result = aspect
+console.log(' brother: ', brother);
+console.log(' aspect: ', aspect);
+/*Какое значение получит переменная result?*/
 
-
-
-
-
-
-
-
-
-import
-    React, {useState}
-    from 'react'    ;
-import ReactDOM from 'react-dom'    ;
-import
-
-    './index.css'
-    ;
-
-type UserType = {
-
-    id
-        : number
-
-    name
-        : string
-
-    age
-        : number
+const user = {
+  name: "Liza",
+  age: 66,
+  scores: [7.05, 12.72, 64.38]
 }
 
-function User(
-    props: UserType
-) {
+const [first, second, third = 11.43] = user.scores
 
-    return (
-        <li>Student {props.name}: {props.age} y.o.</li>
-    )
+switch(third){
+  case 11.43:
+    console.log("Antigua")
+    break;
+  case 12.72:
+    console.log("Vanuatu")
+    break;
+  default:
+    console.log("Belarus");
 }
 
-function UsersList
-() {
-    const data: Array<UserType> = [
-        {
-            id:
-                1
-            ,
-            name:
-                "Bob"
-            ,
-            age:
-                34
-        },
-        {
-            id:
-                2
-            ,
-            name:
-                "Alex"
-            ,
-            age:
-                29
-        },
-        {
-            id:
-                3
-            ,
-            name:
-                "Ann"
-            ,
-            age:
-                25
-        },
-        {
-            id:
-                4
-            ,
-            name:
-                "John"
-            ,
-            age:
-                36
-        },
-    ]
-
-    const [users, setUsers] = useState<Array<UserType>>(data)
-
-    return (
-        <main>
-            <h4>User list:</h4>
-            <ul>
-                {
-                    users.map(u => <User key={u.id}
-                                         id={u.id}
-                                         name={u.name}
-                                         age={u.age}
-                        />
-                    )
-                }
-            </ul>
-        </main>
-    )
-}
-
-ReactDOM.render(
-    <UsersList/>,
-    document
-        .getElementById(
-            'root'
-        )
-);
-// Что надо написать вместо xxx, чтобы код работал оптимально?
+/*Какую строку мы увидим в консоли?*/
 
 
+const {capital} = {capital: 64}
 
+const multiply = capital * 97.98
 
+const randomValue = multiply && "William" &&  "Vladimir"
 
-import
-  React, {useState, MouseEvent, ChangeEvent}
-  from
-    
-    'react'
-  ;
-import
-  ReactDOM
-  from
-    
-    'react-dom'
-  ;
-import
-  
-  './index.css'
-  ;
-function
+/* Какое значение получит переменная randomValue ? */
 
-User
-(
-)
-{
-  
-  const
-    [userName, setUserName] = useState<string>(
-      ""
-    )
-  
-  return    (
-    <div>
-      <p>{userName}</p>
-      <input
-        value={userName}
-        onChange={(e) => setUserName(e.currentTarget.value)}
-      />
-    </div>
-  )
-}
-ReactDOM.render(
-  <User/>,
-  document
-    .getElementById(
-      'root'
-    )
-);
-// Что надо написать вместо ххх, чтобы инпут был контролируемым?
+let result = 0
 
-
-
-
-
-
-
-
-
-import
-  React, {useState, MouseEvent, ChangeEvent}
-  from
-    
-    'react'
-  ;
-import
-  ReactDOM
-  from
-    
-    'react-dom'
-  ;
-import
-  
-  './index.css'
-  ;
-
-function Notes() {
-  
-  const [newNote, setNewNote] = useState<string>(
-    ""
-  )
-  
-  const [notes, setNotes]
-    = useState<Array<string>>([])
-  
-  const onChangeHandler = (
-    e: ChangeEvent<HTMLTextAreaElement>
-  ) => setNewNote(e.currentTarget.value)
-  
-  const addNote = () => {
-    setNotes([newNote, ...notes])
-    setNewNote(
-      ""
-    )
+for(let i = 0; i < 5; i++){
+  if(i % 2){
+    result += i
   }
-  
-  return (
-    <div>
-            <textarea
-              value={newNote}
-              onChange={onChangeHandler}
-              onBlur={addNote}
-            />
-      <div>
-        <button
-          // onClick={() => setNewNote('')}
-        >Clear notes list
-        </button>
-      </div>
-      <h4>Notes:</h4>
-      <div>
-        {notes.map(n => <p>{n}</p>)}
-      </div>
-    </div>
-  )
 }
 
-ReactDOM.render(
-  <Notes/>,
-  document
-    .getElementById(
-      'root'
-    )
-);
-// Что надо написать вместо ххх,
-
-// чтобы при клике список заметок очищался?
-
-
-
-import
-  React, {useState}
-  from
-    
-    'react'
-  ;
-import
-  ReactDOM
-  from
-    
-    'react-dom'
-  ;
-import
-  
-  './index.css'
-  ;
-
-type UserType = {
-  
-  id
-    : number
-  
-  name
-    : string
-  
-  age
-    : number
-}
-type UserPropsType = UserType & {
-  
-  deleteUser
-    :
-    (
-      id: number
-    ) =>
-      
-      void
-  
-}
-
-function
-
-User
-(
-  props: UserPropsType
-) {
-  
-  return (
-    <li>
-      <button onClick={() => props.deleteUser(props.id)}>x</button>
-      User {props.name}: {props.age} y.o.
-    </li>
-  )
-}
-
-function UsersList() {
-  
-  const
-    data: Array<UserType> = [
-      {
-        id:
-          1
-        ,
-        name:
-          "Bob"
-        ,
-        age:
-          25
-      },
-      {
-        id:
-          2
-        ,
-        name:
-          "Alex"
-        ,
-        age:
-          28
-      },
-      {
-        id:
-          3
-        ,
-        name:
-          "Ann"
-        ,
-        age:
-          23
-      },
-      {
-        id:
-          4
-        ,
-        name:
-          "John"
-        ,
-        age:
-          30
-      },
-    ]
-  
-  const
-    [users, setUsers]
-      = useState<Array<UserType>>(data)
-  
-  const
-    deleteUser =
-      (
-        userID: number
-      ) => {
-        
-        const
-          filteredUsers = users.filter(
-            u =>
-              u.id !== userID)
-        setUsers(filteredUsers)
-      }
-  
-  return (
-    <main>
-      <h4>User list:</h4>
-      <ul>
-        {users.map(u => <User
-          key={u.id}
-          {...u}
-          deleteUser={deleteUser}
-        />)}
-      </ul>
-    </main>
-  )
-}
-
-ReactDOM.render(
-  <UsersList/>,
-  document
-    .getElementById(
-      'root'
-    )
-);
-// Что надо написать вместо xxx, чтобы код работал?
+const studentName = (result - 4)
+  ? "Eva"
+  : "Valera"
+console.log(studentName);
+/* Какое значение получит переменная studentName? */
